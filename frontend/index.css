@@ -1,0 +1,37 @@
+body {
+    background-color: white;
+    color: black;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+
+  }
+
+  .parraf {
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: black;
+  }
+
+  #cosa {
+    color: white;
+    align-content: center;
+  }
+
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+  }
+
+  header h1 {
+    margin: 0;
+  }
+
+
+  a {
+    text-decoration: none;
+    /* Elimina el subrayado por defecto */
+    color: aliceblue;
+    /* Hereda el color del texto normal */
+  }

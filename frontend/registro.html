@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro</title>
+
+    <link rel="stylesheet" href="registro.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Registro de Usuario</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="registro.html">Registrarse</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="contenedor__todo">
+        <div class="caja__trasera">
+          <div class="caja__trasera-login">
+            <h3>¿Ya tienes una cuenta?</h3>
+            <p>Inicia sesión para entrar en la página</p>
+            <button id="btn__iniciar-sesion">Iniciar Sesión</button>
+          </div>
+          <div class="caja__trasera-register">
+            <h3>¿Aún no tienes una cuenta?</h3>
+            <p>Regístrate para que puedas iniciar sesión</p>
+            <button id="btn__registrarse">Regístrarse</button>
+          </div>
+        </div>
+
+        <!--Formulario de Login y registro-->
+        <div class="contenedor__login-register">
+          <!--Login-->
+          <form class="formulario__login">
+            <h2>Iniciar Sesión</h2>
+            <input type="text" placeholder="Correo Electronico" />
+            <input type="password" placeholder="Contraseña" />
+            <button id="btn__iniciar-sesion">Entrar</button>
+          </form>
+
+          <!--Register-->
+          <form action="../backend/connection.php" class="formulario__register" method="POST">
+            <h2>Regístrarse</h2>
+            <input type="number" placeholder="DNI" name="id" />
+            <input type="text" placeholder="Nombre completo" name="nombre" />
+            <input type="text" placeholder="Correo Electronico" name="correo" />
+            <select name="rol" class="selector">
+              <option value="administrador">administrador</option>
+              <option value="estudiante">estudiantes</option>
+            </select>
+            <input type="password" placeholder="Contraseña" name="pass" />
+            <button>Regístrarse</button>
+          </form>
+        </div>
+      </div>
+    </main>
+    <script src="./registro.js"></script>
+  </body>
+</html>
+
+<!--cossio el mejor-->
