@@ -1,48 +1,35 @@
 <?php
-include 'db.php'; // Incluir la conexión a la base de datos
+include 'connection.php'; // Incluir la conexión a la base de datos
 
-session_start(); // Iniciar la sesión
+if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+    // Obtener los datos del formulario
+    $id = $_POST['id'];
+    $pass = $_POST['pass'];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    // Verificar si el usuario existe
-    $stmt = $conn->prepare("SELECT id, password FROM users WHERE username = ?");
-    $stmt->bind_param("s", $username);
+    // Preparar la consulta SQL para obtener el hash de la contraseña
+    $stmt = $conn->prepare("SELECT pass FROM usuario WHERE id = ?");
+    $stmt->bind_param("s", $id);
     $stmt->execute();
     $stmt->store_result();
-    $stmt->bind_result($id, $hashed_password);
-    $stmt->fetch();
 
-    if ($stmt->num_rows > 0 && password_verify($password, $hashed_password)) {
-        // Autenticación exitosa
-        $_SESSION['user_id'] = $id;
-        echo "Inicio de sesión exitoso. Puedes acceder a la <a href='profile.php'>página de perfil</a>.";
+    if ($stmt->num_rows > 0) {
+        $stmt->bind_result($hashed_pass);
+        $stmt->fetch();
+
+        // Verificar la contraseña
+        if (password_verify($pass, $hashed_pass)) {
+            // Contraseña correcta, redirigir a la página de inicio
+            header("Location: ../frontend/index.html");
+            exit();
+        } else {
+            // Contraseña incorrecta
+            echo "Contraseña incorrecta";
+        }
     } else {
-        echo "Nombre de usuario o contraseña incorrectos.";
+        // Usuario no encontrado
+        echo "Usuario no encontrado";
     }
 
     $stmt->close();
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Inicio de Sesión</title>
-</head>
-<body>
-    <form method="post" action="login.php">
-        <label for="username">Nombre de Usuario:</label>
-        <input type="text" id="username" name="username" required>
-        <br>
-        <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <input type="submit" name="login" value="Iniciar Sesión">
-    </form>
-</body>
-</html>
-

@@ -37,22 +37,31 @@
         <!--Formulario de Login y registro-->
         <div class="contenedor__login-register">
           <!--Login-->
-          <form class="formulario__login">
+          <form
+            class="formulario__login"
+            action="../backend/login.php"
+            method="POST"
+          >
             <h2>Iniciar Sesión</h2>
-            <input type="text" placeholder="Correo Electronico" />
-            <input type="password" placeholder="Contraseña" />
+            <input type="text" placeholder="DNI" name="id" />
+            <input type="password" placeholder="Contraseña" name="pass" />
             <button id="btn__iniciar-sesion">Entrar</button>
           </form>
 
           <!--Register-->
-          <form action="../backend/connection.php" class="formulario__register" method="POST">
+          <form
+            action="../backend/register.php"
+            class="formulario__register"
+            method="POST"
+          >
             <h2>Regístrarse</h2>
-            <input type="number" placeholder="DNI" name="id" />
+            <input type="number" placeholder="DNI" name="id" required />
             <input type="text" placeholder="Nombre completo" name="nombre" />
             <input type="text" placeholder="Correo Electronico" name="correo" />
-            <select name="rol" class="selector">
+            <select name="rol" class="selector" required>
+              <option value="#" selected disabled></option>
               <option value="administrador">administrador</option>
-              <option value="estudiante">estudiantes</option>
+              <option value="estudiante">estudiante</option>
             </select>
             <input type="password" placeholder="Contraseña" name="pass" />
             <button>Regístrarse</button>
@@ -63,5 +72,3 @@
     <script src="./registro.js"></script>
   </body>
 </html>
-
-<!--cossio el mejor-->
