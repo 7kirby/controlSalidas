@@ -1,55 +1,76 @@
-        body {
-            background-color: #f4f4f4; /* Color de fondo que coincide con tu estilo */
-            font-family: 'Roboto', sans-serif; /* Fuente igual que la de tus formularios */
-            margin: 0;
-            padding: 0;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        header {
-            background-color: #333; /* Color de fondo del header */
-            color: white;
-            padding: 20px;
-        }
-        header h1 {
-            margin: 0;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-        th {
-            background-color: #333; /* Color de fondo de los encabezados */
-            color: #fff;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9; /* Color alternativo para filas */
-        }
-        .action-buttons {
-            display: flex;
-            gap: 10px; /* Espacio entre botones */
-        }
-        .action-buttons button {
-            padding: 6px 12px;
-            border: none;
-            background-color: #333;
-            color: white;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .action-buttons button:hover {
-            background-color: #555; /* Cambio de color al pasar el mouse */
-        }
-        .no-data {
-            text-align: center;
-            color: #777; /* Color para el mensaje de sin datos */
-        }
+body {
+  background-color: #f4f4f4; /* Color de fondo que coincide con tu estilo */
+  font-family: "Roboto", sans-serif; /* Fuente igual que la de tus formularios */
+  margin: 0;
+  padding: 0;
+}
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+
+header h1 {
+  margin: 0;
+}
+
+nav ul {
+  padding: 0; /* Elimina el padding */
+  margin: 0; /* Elimina el margen */
+  display: flex; /* Usa flexbox para alinear los elementos en fila */
+  list-style-type: none;
+}
+nav ul li {
+  padding: 10px;
+}
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+nav ul li a:hover {
+    color:  blue;
+  }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+th {
+  background-color: #333; /* Color de fondo de los encabezados */
+  color: #fff;
+}
+tr:nth-child(even) {
+  background-color: #f9f9f9; /* Color alternativo para filas */
+}
+.no-data {
+  text-align: center;
+  color: #777; /* Color para el mensaje de sin datos */
+}
+button {
+    margin: 5px;
+    display: flexbox;
+    width: 30%;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
   
+  button:hover {
+    background-color: #555;
+  }
+  @media screen and (max-width: 850px){
+    button {
+        margin: 1px;
+        width: 70%;
+      }
+
+  }

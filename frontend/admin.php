@@ -18,20 +18,10 @@ if (!$result) {
     <link rel="stylesheet" href="read.css"> <!-- Asegúrate de que tu CSS tenga los estilos deseados -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listado de Usuarios</title>
+    
 </head>
-<header>
-    <h1>Datos de la Base de Datos</h1>
-    <nav>
-    <ul>
-        <li>
-            <a href="registro.html">Registro</a>
-        </li>
-        <li>
-            <a href="#">shi</a>
-        </li>
-    </nav>
-</header>
 <body>
+    <h1>Datos de la Base de Datos</h1>
     <table>
         <thead>
             <tr>
@@ -55,8 +45,8 @@ if (!$result) {
                     echo "<td>" . htmlspecialchars($row["rol"]) . "</td>";
                     echo "<td>Oculto</td>"; // No mostrar la contraseña
                     echo "<td class='action-buttons'>"; // Columna de acciones
-                    echo "<button onclick=\"location.href='../backend/actualizar.php?id=" . htmlspecialchars($row['id']) . "'\">Actualizar</button>";
-                    echo "<button onclick=\"if(confirm('¿Estás seguro de que quieres borrar?')) location.href='../backend/borrar.php?id=" . htmlspecialchars($row['id'])."'\">Borrar</button>"; // Botón de borrar
+                    echo "<button onclick=\"location.href='actualizar.php?id=" . htmlspecialchars($row['pass']) . "'\">Actualizar</button>"; // Botón de actualizar
+                    echo "<button onclick=\"if(confirm('¿Estás seguro de que quieres borrar?')) location.href='borrar.php?id=" . htmlspecialchars($row['id']) . "'\">Borrar</button>"; // Botón de borrar
                     echo "</td>";
                     echo "</tr>";
                 }

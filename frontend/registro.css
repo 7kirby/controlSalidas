@@ -6,13 +6,6 @@
     font-family: 'Roboto', sans-serif;
   }
   
-  body{
-    background-color: white;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-  }
   .selector{
    width: 400px;
   }
@@ -156,10 +149,6 @@
     display: none;
   }
   
-  .recover-pass{
-    width: 100% !important;
-    color: red;
-  }
   
   
   @media screen and (max-width: 850px){

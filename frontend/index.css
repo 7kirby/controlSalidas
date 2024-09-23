@@ -1,15 +1,31 @@
-body {
-    background-color: white;
-    color: black;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-attachment: fixed;
+ header {
+    background-color: red;
+    color: #fff;
+    padding: 20px;
+  }
+  header h1 {
+    margin: 0;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  nav ul li {
 
+    display: inline;
+    margin-right: 20px;
+  }
+  
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
   }
 
   .parraf {
     font-size: 20px;
-    font-family:'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif;
     color: black;
   }
 
