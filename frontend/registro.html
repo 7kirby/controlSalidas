@@ -33,42 +33,40 @@
             <button id="btn__registrarse">Regístrarse</button>
           </div>
         </div>
-
+    
         <!--Formulario de Login y registro-->
         <div class="contenedor__login-register">
           <!--Login-->
-          <form
-            action="../backend/login.php"
-            class="formulario__login"
-            method="POST"
-          >
+          <form action="../backend/login.php" class="formulario__login" method="POST">
             <h2>Iniciar Sesión</h2>
-            <input type="text" placeholder="DNI" name="id" />
-            <input type="password" placeholder="Contraseña" name="pass" />
+            <input type="text" placeholder="DNI" name="id" required />
+            <input type="password" placeholder="Contraseña" name="pass" required />
             <button id="btn__iniciar-sesion">Entrar</button>
+            <div>
+              <a href="#" id="recover_pass">¿Olvidaste tu contraseña?</a>
+            </div>
+              
+           
           </form>
-
+    
           <!--Register-->
-          <form
-            action="../backend/register.php"
-            class="formulario__register"
-            method="POST"
-          >
+          <form action="../backend/register.php" class="formulario__register" method="POST">
             <h2>Regístrarse</h2>
             <input type="number" placeholder="DNI" name="id" required />
-            <input type="text" placeholder="Nombre completo" name="nombre" />
-            <input type="text" placeholder="Correo Electronico" name="correo" />
+            <input type="text" placeholder="Nombre completo" name="nombre" required />
+            <input type="email" placeholder="Correo Electrónico" name="correo" required />
             <select name="rol" class="selector" required>
-              <option value="#" selected disabled></option>
-              <option value="administrador">administrador</option>
-              <option value="estudiante">estudiante</option>
+              <option value="#" selected disabled>Selecciona tu rol</option>
+              <option value="administrador">Administrador</option>
+              <option value="estudiante">Estudiante</option>
             </select>
-            <input type="password" placeholder="Contraseña" name="pass" />
+            <input type="password" placeholder="Contraseña" name="pass" required />
             <button>Regístrarse</button>
           </form>
         </div>
       </div>
     </main>
+    
     <script src="./registro.js"></script>
   </body>
 </html>

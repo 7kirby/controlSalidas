@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             // Contraseña correcta, redirigir según el rol
             switch ($rol) {
                 case 'administrador':
-                    header("Location: ../frontend/admin.html");
+                    header("Location: ../frontend/read.php");
                     break;
                 case 'estudiante':
                     echo "Bienvenido";

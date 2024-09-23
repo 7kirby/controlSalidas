@@ -156,6 +156,10 @@
     display: none;
   }
   
+  .recover-pass{
+    width: 100% !important;
+    color: red;
+  }
   
   
   @media screen and (max-width: 850px){
@@ -259,7 +263,7 @@
   
   .grupo {
     margin-bottom: 20px;
-  }
+  } 
   
   .grupo label {
     display: block;
@@ -292,3 +296,4 @@
   .oculto {
     display: none;
   }
+
