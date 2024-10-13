@@ -1,32 +1,43 @@
 <?php
 include 'connection.php';
+session_start();
 
-// Verificar que se haya recibido el ID
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+// Verificar que se haya recibido el ID y que sea un entero
+if (isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT)) {
+    $id = intval($_GET['id']);
+
+    // Eliminar registros dependientes
+    $deleteGradoGrupoSql = "DELETE FROM estudiante_grado_grupo WHERE id = ?";
+    $deleteGradoGrupoStmt = $conn->prepare($deleteGradoGrupoSql);
+    $deleteGradoGrupoStmt->bind_param("i", $id);
+    $deleteGradoGrupoStmt->execute();
+    $deleteGradoGrupoStmt->close();
 
     // Consulta para borrar el usuario
     $sql = "DELETE FROM usuario WHERE id = ?";
-    
-    // Preparar la consulta
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $id); // Asegúrate de que el ID sea un entero
+    
+    if ($stmt) {
+        $stmt->bind_param("i", $id);
 
-    // Ejecutar la consulta
-    if ($stmt->execute()) {
-        // Redirigir a la página de listado de usuarios después de borrar
-        header("Location: ../frontend/read.php?mensaje=Registro borrado con éxito");
-        exit();
+        // Ejecutar la consulta
+        if ($stmt->execute()) {
+            $_SESSION['mensaje'] = "Registro borrado con éxito";
+        } else {
+            $_SESSION['error'] = "Error al borrar el registro: " . $stmt->error;
+        }
+
+        $stmt->close();
     } else {
-        echo "Error al borrar el registro: " . $conn->error;
+        $_SESSION['error'] = "Error al preparar la consulta: " . $conn->error;
     }
-
-    // Cerrar la declaración
-    $stmt->close();
 } else {
-    echo "No se ha proporcionado un ID válido.";
+    $_SESSION['error'] = "No se ha proporcionado un ID válido.";
 }
 
 // Cerrar conexión
 $conn->close();
+header("Location: ../frontend/read.php");
+exit();
 ?>
+

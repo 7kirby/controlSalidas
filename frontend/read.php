@@ -1,11 +1,12 @@
 <?php
-include '../backend/connection.php'; // Ajusta la ruta según tu estructura de directorios
+include '../backend/connection.php';
 
-// Consulta para obtener los datos
-$sql = "SELECT * FROM usuario"; 
+// Consulta SQL para obtener datos de usuario y estudiante
+$sql = "SELECT u.*, eg.grado, eg.grupo, eg.acudiente1, eg.acudiente2, eg.nu_acudiente 
+        FROM usuario u 
+        LEFT JOIN estudiante_grado_grupo eg ON u.id = eg.id";
 $result = $conn->query($sql);
 
-// Verificar si la consulta fue exitosa
 if (!$result) {
     die("Error en la consulta: " . $conn->error);
 }
@@ -15,60 +16,63 @@ if (!$result) {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="read.css"> <!-- Asegúrate de que tu CSS tenga los estilos deseados -->
+    <link rel="stylesheet" href="read.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listado de Usuarios</title>
 </head>
+<body>
 <header>
     <h1>Datos de la Base de Datos</h1>
     <nav>
-    <ul>
-        <li>
-            <a href="registro.html">Registro</a>
-        </li>
-        <li>
-            <a href="#">shi</a>
-        </li>
+        <ul>
+            <li><a href="registro.html">Volver</a></li>
+        </ul>
     </nav>
 </header>
-<body>
+<main>
     <table>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
+                <th>Teléfono</th>
                 <th>Correo</th>
                 <th>Rol</th>
-                <th>Contraseña</th>
-                <th>Acciones</th> <!-- Nueva columna para acciones -->
+                <th>Grado</th>
+                <th>Grupo</th>
+                <th>Acudiente 1</th>
+                <th>Acudiente 2</th>
+                <th>Número de Acudiente</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <?php
-            if ($result->num_rows > 0) {
-                // Salida de cada fila
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . htmlspecialchars($row["id"]) . "</td>";
-                    echo "<td>" . htmlspecialchars($row["nombre"]) . "</td>";
-                    echo "<td>" . htmlspecialchars($row["correo"]) . "</td>";
-                    echo "<td>" . htmlspecialchars($row["rol"]) . "</td>";
-                    echo "<td>Oculto</td>"; // No mostrar la contraseña
-                    echo "<td class='action-buttons'>"; // Columna de acciones
-                    echo "<button onclick=\"location.href='../backend/actualizar.php?id=" . htmlspecialchars($row['id']) . "'\">Actualizar</button>";
-                    echo "<button onclick=\"if(confirm('¿Estás seguro de que quieres borrar?')) location.href='../backend/borrar.php?id=" . htmlspecialchars($row['id'])."'\">Borrar</button>"; // Botón de borrar
-                    echo "</td>";
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='6' class='no-data'>No hay datos disponibles</td></tr>";
-            }
-            ?>
+            <?php if ($result->num_rows > 0): ?>
+                <?php foreach ($result as $row): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($row["id"]) ?></td>
+                        <td><?= htmlspecialchars($row["nombre"]) ?></td>
+                        <td><?= htmlspecialchars($row["num_telefono"]) ?></td>
+                        <td><?= htmlspecialchars($row["correo"]) ?></td>
+                        <td><?= htmlspecialchars($row["rol"]) ?></td>
+                        <td><?= htmlspecialchars($row["rol"] === 'estudiante' ? $row["grado"] : '') ?></td>
+                        <td><?= htmlspecialchars($row["rol"] === 'estudiante' ? $row["grupo"] : '') ?></td>
+                        <td><?= htmlspecialchars($row["rol"] === 'estudiante' ? $row["acudiente1"] : '') ?></td>
+                        <td><?= htmlspecialchars($row["rol"] === 'estudiante' ? $row["acudiente2"] : '') ?></td>
+                        <td><?= htmlspecialchars($row["rol"] === 'estudiante' ? $row["nu_acudiente"] : '') ?></td>
+                        <td>
+                            <button onclick="location.href='../backend/actualizar.php?id=<?= htmlspecialchars($row['id']) ?>'">Actualizar</button>
+                            <button onclick="if(confirm('¿Estás seguro de que quieres borrar?')) location.href='../backend/borrar.php?id=<?= htmlspecialchars($row['id']) ?>'">Borrar</button>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr><td colspan='11'>No hay datos disponibles</td></tr>
+            <?php endif; ?>
         </tbody>
     </table>
+</main>
 </body>
 </html>
 
-<?php
-$conn->close(); // Cerrar conexión
-?>
+<?php $conn->close(); ?>

@@ -1,0 +1,46 @@
+body {
+    background-color: #f4f4f4; /* Color de fondo */
+    font-family: "Roboto", sans-serif; /* Fuente */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333; /* Color de fondo del encabezado */
+    color: #fff; /* Color del texto */
+    padding: 20px;
+    text-align: center; /* Centrar el texto en el encabezado */
+}
+
+nav ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none; /* Sin viñetas */
+}
+
+nav ul li {
+    display: inline; /* Mostrar elementos en línea */
+    margin-right: 15px; /* Espacio entre enlaces */
+}
+
+nav ul li a {
+    color: #fff; /* Color de los enlaces */
+    text-decoration: none; /* Sin subrayado */
+}
+
+nav ul li a:hover {
+    color: blue; /* Color al pasar el ratón */
+}
+
+table {
+    width: 100%; /* Ancho de la tabla */
+    border-collapse: collapse; /* Colapsar bordes */
+    margin-top: 20px;
+}
+
+td {
+    padding: 12px; /* Espaciado interno */
+    text-align: left; /* Alinear a la izquierda */
+    border: 1px solid #ddd; /* Bordes de las celdas */
+}
+

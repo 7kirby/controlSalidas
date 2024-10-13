@@ -1,70 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registro</title>
-
     <link rel="stylesheet" href="registro.css" />
-  </head>
+    <script>
+        function mostrarFormularioEstudiante() {
+            const rolSelect = document.querySelector('select[name="rol"]');
+            const formularioEstudiante = document.getElementById('formularioEstudiante');
+            const inputsEstudiante = formularioEstudiante.querySelectorAll('input');
 
-  <body>
+            if (rolSelect.value === 'estudiante') {
+                formularioEstudiante.style.display = 'block';
+                inputsEstudiante.forEach(input => {
+                    input.required = true; // Habilitar campos para llenar
+                });
+            } else {
+                formularioEstudiante.style.display = 'none';
+                inputsEstudiante.forEach(input => {
+                    input.required = false; // Deshabilitar campos
+                    input.value = ''; // Limpiar valores
+                });
+            }
+        }
+    </script>
+</head>
+
+<body>
     <header>
-      <h1>Registro de Usuario</h1>
-      <nav>
-        <ul>
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="registro.html">Registrarse</a></li>
-        </ul>
-      </nav>
+        <h1>Registro de Usuario</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="registro.html">Registrarse</a></li>
+            </ul>
+        </nav>
     </header>
     <main>
-  <div class="contenedor__todo">
-    <div class="caja__trasera">
-      <div class="caja__trasera-login">
-        <h3>¿Ya tienes una cuenta?</h3>
-        <p>Inicia sesión para entrar en la página</p>
-        <button id="btn__iniciar-sesion">Iniciar Sesión</button>
-      </div>
-      <div class="caja__trasera-register">
-        <h3>¿Aún no tienes una cuenta?</h3>
-        <p>Regístrate para que puedas iniciar sesión</p>
-        <button id="btn__registrarse">Regístrarse</button>
-      </div>
-    </div>
+        <div class="contenedor__todo">
+            <div class="caja__trasera">
+                <div class="caja__trasera-login">
+                    <h3>¿Ya tienes una cuenta?</h3>
+                    <p>Inicia sesión para entrar en la página</p>
+                    <button id="btn__iniciar-sesion">Iniciar Sesión</button>
+                </div>
+                <div class="caja__trasera-register">
+                    <h3>¿Aún no tienes una cuenta?</h3>
+                    <p>Regístrate para que puedas iniciar sesión</p>
+                    <button id="btn__registrarse">Regístrarse</button>
+                </div>
+            </div>
 
-    <!--Formulario de Login y registro-->
-    <div class="contenedor__login-register">
-      <!--Login-->
-      <form action="../backend/login.php" class="formulario__login" method="POST">
-        <h2>Iniciar Sesión</h2>
-        <input type="text" placeholder="DNI" name="id" required />
-        <input type="password" placeholder="Contraseña" name="pass" required />
-        <button id="btn__iniciar-sesion">Entrar</button>
-        <br>
-        <center>
-          <a href="http://" target="_blank" id="pass-change">Olvido contraseña?</a>
-         </center>
-      </form>
+            <!--Formulario de Login y registro-->
+            <div class="contenedor__login-register">
+                <!--Login-->
+                <form action="../backend/login.php" class="formulario__login" method="POST">
+                    <h2>Iniciar Sesión</h2>
+                    <input type="text" placeholder="DNI" name="id" required />
+                    <input type="password" placeholder="Contraseña" name="pass" required />
+                    <button id="btn__iniciar-sesion">Entrar</button>
+                    <br>
+                    <center>
+                        <a href="http://" target="_blank" id="pass-change">Olvido contraseña?</a>
+                    </center>
+                </form>
 
-      <!--Register-->
-      <form action="../backend/register.php" class="formulario__register" method="POST">
-        <h2>Regístrarse</h2>
-        <input type="number" placeholder="DNI" name="id" required />
-        <input type="text" placeholder="Nombre completo" name="nombre" required />
-        <input type="email" placeholder="Correo Electrónico" name="correo" required />
-        <select name="rol" class="selector" required>
-          <option value="#" selected disabled>Selecciona tu rol</option>
-          <option value="administrador">Administrador</option>
-          <option value="estudiante">Estudiante</option>
-        </select>
-        <input type="password" placeholder="Contraseña" name="pass" required />
-        <button>Regístrarse</button>
-      </form>
-    </div>
-  </div>
-</main>
+                <!--Register-->
+                <form action="../backend/register.php" class="formulario__register" method="POST">
+                    <h2>Regístrarse</h2>
+                    <input type="number" placeholder="DNI" name="id" required />
+                    <input type="text" placeholder="Nombre completo" name="nombre" required />
+                    <input type="email" placeholder="Correo Electrónico" name="correo" required />
+                    <input type="text" placeholder="Número de Teléfono" name="num_telefono" required />
+                    <select name="rol" class="selector" onchange="mostrarFormularioEstudiante()" required>
+                        <option value="#" selected disabled>Selecciona tu rol</option>
+                        <option value="administrador">Administrador</option>
+                        <option value="estudiante">Estudiante</option>
+                    </select>
+                    <input type="password" placeholder="Contraseña" name="pass" required />
 
+                    <!-- Formulario adicional para estudiantes -->
+                          <div id="formularioEstudiante" style="display:none;">
+                            <input type="text" placeholder="Grado" name="grado" required />
+                            <input type="text" placeholder="Grupo" name="grupo" required />
+                            <input type="text" placeholder="Acudiente 1" name="acudiente1" required />
+                            <input type="text" placeholder="Acudiente 2" name="acudiente2" required />
+                            <input type="text" placeholder="Número de Acudiente" name="nu_acudiente" required />
+                          </div>
+
+
+                    <button>Regístrarse</button>
+                </form>
+            </div>
+        </div>
+    </main>
     <script src="./registro.js"></script>
-  </body>
+</body>
 </html>
+
+
+

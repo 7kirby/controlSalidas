@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                     header("Location: ../frontend/read.php");
                     break;
                 case 'estudiante':
-                    echo "Bienvenido";
+                    header("Location: ../frontend/estudiante.php");
                     break;
                 default:
                     header("Location: ../frontend/error.html"); // Redirigir a una página de error si el rol no es válido
