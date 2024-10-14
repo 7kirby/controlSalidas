@@ -38,9 +38,4 @@ table {
     margin-top: 20px;
 }
 
-td {
-    padding: 12px; /* Espaciado interno */
-    text-align: left; /* Alinear a la izquierda */
-    border: 1px solid #ddd; /* Bordes de las celdas */
-}
 
