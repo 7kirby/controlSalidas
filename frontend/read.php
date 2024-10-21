@@ -25,7 +25,9 @@ if (!$result) {
     <h1>Datos de la Base de Datos</h1>
     <nav>
         <ul>
+            <li><a href="index.html">Inicio</a></li>
             <li><a href="registro.html">Volver</a></li>
+            <li><a href="salida.php">Salidas</a></li>
         </ul>
     </nav>
 </header>
