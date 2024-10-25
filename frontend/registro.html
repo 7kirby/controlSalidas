@@ -10,18 +10,23 @@
             const rolSelect = document.querySelector('select[name="rol"]');
             const formularioEstudiante = document.getElementById('formularioEstudiante');
             const inputsEstudiante = formularioEstudiante.querySelectorAll('input');
+            const adminPasswordInput = document.getElementById('adminPassword');
 
             if (rolSelect.value === 'estudiante') {
                 formularioEstudiante.style.display = 'block';
                 inputsEstudiante.forEach(input => {
                     input.required = true; // Habilitar campos para llenar
                 });
-            } else {
-                formularioEstudiante.style.display = 'none';
+                adminPasswordInput.style.display = 'none'; // Ocultar campo de contraseña de admin
+            } else if (rolSelect.value === 'administrador') {
+                formularioEstudiante.style.display = 'none'; // Ocultar formulario de estudiante
                 inputsEstudiante.forEach(input => {
                     input.required = false; // Deshabilitar campos
                     input.value = ''; // Limpiar valores
                 });
+                adminPasswordInput.style.display = 'block'; // Mostrar campo de contraseña de admin
+            } else {
+                adminPasswordInput.style.display = 'none'; // Ocultar si no se selecciona rol
             }
         }
     </script>
@@ -79,16 +84,16 @@
                         <option value="estudiante">Estudiante</option>
                     </select>
                     <input type="password" placeholder="Contraseña" name="pass" required />
+                    <input type="password" placeholder="Contraseña (Administrador)" name="admin_pass" id="adminPassword" style="display:none;" />
 
                     <!-- Formulario adicional para estudiantes -->
-                          <div id="formularioEstudiante" style="display:none;">
-                            <input type="text" placeholder="Grado" name="grado" required />
-                            <input type="text" placeholder="Grupo" name="grupo" required />
-                            <input type="text" placeholder="Acudiente 1" name="acudiente1" required />
-                            <input type="text" placeholder="Acudiente 2" name="acudiente2" required />
-                            <input type="text" placeholder="Número de Acudiente" name="nu_acudiente" required />
-                          </div>
-
+                    <div id="formularioEstudiante" style="display:none;">
+                        <input type="text" placeholder="Grado" name="grado" required />
+                        <input type="text" placeholder="Grupo" name="grupo" required />
+                        <input type="text" placeholder="Acudiente 1" name="acudiente1" required />
+                        <input type="text" placeholder="Acudiente 2" name="acudiente2" required />
+                        <input type="text" placeholder="Número de Acudiente" name="nu_acudiente" required />
+                    </div>
 
                     <button>Regístrarse</button>
                 </form>
@@ -98,6 +103,3 @@
     <script src="./registro.js"></script>
 </body>
 </html>
-
-
-

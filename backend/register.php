@@ -1,6 +1,9 @@
 <?php
 include 'connection.php'; // Incluir la conexión a la base de datos
 
+// Define la contraseña fija para el administrador
+define('ADMIN_PASSWORD', 'TuContraseñaFija123'); // Cambia esto por la contraseña deseada
+
 if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     // Obtener los datos del formulario
     $id = $_POST['id'];
@@ -8,7 +11,16 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     $correo = $_POST['correo'];
     $num_telefono = $_POST['num_telefono'];
     $rol = $_POST['rol'];
-    $pass = $_POST['pass'];
+    $pass = $_POST['pass'] ?? $_POST['admin_pass']; // Usa la contraseña adecuada
+
+    // Verificar que la contraseña sea requerida para administrador
+    if ($rol === 'administrador') {
+        // Comprobar si la contraseña ingresada coincide con la contraseña fija
+        if ($pass !== ADMIN_PASSWORD) {
+            echo "Contraseña incorrecta para el rol de administrador.";
+            exit();
+        }
+    }
 
     // Hashear la contraseña
     $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
@@ -49,5 +61,3 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     $stmt->close();
 }
 ?>
-
-
